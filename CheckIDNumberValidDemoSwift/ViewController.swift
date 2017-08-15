@@ -1,0 +1,210 @@
+//
+//  ViewController.swift
+//  CheckIDNumberValidDemoSwift
+//
+//  Created by 王垒 on 2017/8/15.
+//  Copyright © 2017年 王垒. All rights reserved.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let title = ""
+        
+        if !isTrueIDNumber(text: title) {
+            print("不是")
+        }else{
+            
+            print("是")
+        }
+
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    func isTrueIDNumber(text:String) -> Bool{
+        
+        var value = text
+        
+        value = value.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        var length : Int = 0
+        
+        length = value.characters.count
+        
+        if length != 15 && length != 18{
+            //不满足15位和18位，即身份证错误
+            return false
+        }
+        
+        // 省份代码
+        let areasArray = ["11","12", "13","14", "15","21", "22","23", "31","32", "33","34", "35","36", "37","41", "42","43", "44","45", "46","50", "51","52", "53","54", "61","62", "63","64", "65","71", "81","82", "91"]
+        
+        // 检测省份身份行政区代码
+        let index = value.index(value.startIndex, offsetBy: 2)
+        let valueStart2 = value.substring(to: index)
+        
+        //标识省份代码是否正确
+        var areaFlag = false
+        
+        for areaCode in areasArray {
+            
+            if areaCode == valueStart2 {
+                areaFlag = true
+                break
+            }
+        }
+        
+        if !areaFlag {
+            return false
+        }
+        
+        var regularExpression : NSRegularExpression?
+        
+        var numberofMatch : Int?
+        
+        var year = 0
+        
+        switch length {
+        case 15:
+            
+            //获取年份对应的数字
+            let valueNSStr = value as NSString
+            
+            let yearStr = valueNSStr.substring(with: NSRange.init(location: 6, length: 2)) as NSString
+            
+            year = yearStr.integerValue + 1900
+            
+            if year % 4 == 0 || (year % 100 == 0 && year % 4 == 0) {
+                //创建正则表达式 NSRegularExpressionCaseInsensitive：不区分字母大小写的模式
+                //测试出生日期的合法性
+                regularExpression = try! NSRegularExpression.init(pattern: "^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}$", options: NSRegularExpression.Options.caseInsensitive)
+            }else{
+                
+                //测试出生日期的合法性
+                regularExpression = try! NSRegularExpression.init(pattern: "^[1-9][0-9]{5}[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}$", options: NSRegularExpression.Options.caseInsensitive)
+            }
+            
+            numberofMatch = regularExpression?.numberOfMatches(in: value, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSRange.init(location: 0, length: value.characters.count))
+            
+            if numberofMatch! > 0 {
+                return true
+            }else{
+                
+                return false
+            }
+            
+        case 18:
+            
+            let valueNSStr = value as NSString
+            
+            let yearStr = valueNSStr.substring(with: NSRange.init(location: 6, length: 4)) as NSString
+            
+            year = yearStr.integerValue
+            
+            if year % 4 == 0 || (year % 100 == 0 && year % 4 == 0) {
+                
+                //测试出生日期的合法性
+                regularExpression = try! NSRegularExpression.init(pattern: "^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]{3}[0-9Xx]$", options: NSRegularExpression.Options.caseInsensitive)
+                
+            }else{
+                
+                //测试出生日期的合法性
+                regularExpression = try! NSRegularExpression.init(pattern: "^[1-9][0-9]{5}19[0-9]{2}((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]{3}[0-9Xx]$", options: NSRegularExpression.Options.caseInsensitive)
+            }
+            
+            numberofMatch = regularExpression?.numberOfMatches(in: value, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSRange.init(location: 0, length: value.characters.count))
+            
+            if numberofMatch! > 0 {
+                
+                let a = getStringByRangeIntValue(Str: valueNSStr, location: 0, length: 1) * 7
+                
+                let b = getStringByRangeIntValue(Str: valueNSStr, location: 10, length: 1) * 7
+                
+                let c = getStringByRangeIntValue(Str: valueNSStr, location: 1, length: 1) * 9
+                
+                let d = getStringByRangeIntValue(Str: valueNSStr, location: 11, length: 1) * 9
+                
+                let e = getStringByRangeIntValue(Str: valueNSStr, location: 2, length: 1) * 10
+                
+                let f = getStringByRangeIntValue(Str: valueNSStr, location: 12, length: 1) * 10
+                
+                let g = getStringByRangeIntValue(Str: valueNSStr, location: 3, length: 1) * 5
+                
+                let h = getStringByRangeIntValue(Str: valueNSStr, location: 13, length: 1) * 5
+                
+                let i = getStringByRangeIntValue(Str: valueNSStr, location: 4, length: 1) * 8
+                
+                let j = getStringByRangeIntValue(Str: valueNSStr, location: 14, length: 1) * 8
+                
+                let k = getStringByRangeIntValue(Str: valueNSStr, location: 5, length: 1) * 4
+                
+                let l = getStringByRangeIntValue(Str: valueNSStr, location: 15, length: 1) * 4
+                
+                let m = getStringByRangeIntValue(Str: valueNSStr, location: 6, length: 1) * 2
+                
+                let n = getStringByRangeIntValue(Str: valueNSStr, location: 16, length: 1) * 2
+                
+                let o = getStringByRangeIntValue(Str: valueNSStr, location: 7, length: 1) * 1
+                
+                let p = getStringByRangeIntValue(Str: valueNSStr, location: 8, length: 1) * 6
+                
+                let q = getStringByRangeIntValue(Str: valueNSStr, location: 9, length: 1) * 3
+                
+                let S = a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q
+                
+                let Y = S % 11
+                
+                var M = "F"
+                
+                let JYM = "10X98765432"
+                
+                M = (JYM as NSString).substring(with: NSRange.init(location: Y, length: 1))
+                
+                let lastStr = valueNSStr.substring(with: NSRange.init(location: 17, length: 1))
+                
+                if lastStr == "x" {
+                    if M == "X" {
+                        return true
+                    }else{
+                        
+                        return false
+                    }
+                }else{
+                    
+                    if M == lastStr {
+                        return true
+                    }else{
+                        
+                        return false
+                    }
+                }
+            }else{
+                
+                return false
+            }
+            
+        default:
+            return false
+        }
+    }
+    
+    func getStringByRangeIntValue(Str : NSString,location : Int, length : Int) -> Int{
+        
+        let a = Str.substring(with: NSRange(location: location, length: length))
+        
+        let intValue = (a as NSString).integerValue
+        
+        return intValue
+    }
+
+
+}
+
