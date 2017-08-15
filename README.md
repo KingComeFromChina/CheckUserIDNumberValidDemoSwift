@@ -1,0 +1,2 @@
+# CheckUserIDNumberValidDemoSwiftOC
+根据正则和算法判断身份证号合法性和正确性
