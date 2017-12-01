@@ -4,7 +4,7 @@
 #### A simple Id card validation rules written in pure swift, lightweight but powerful.
 
 ###### [🇨🇳中文介绍](http://www.jianshu.com/p/33ed0d7cb413)
->最近项目中用到了判断身份证合法性，本来想着网上正则一大堆，就随便复制粘贴了一个，谁曾想遇到一个身份证号带X的测试，测试说把X换成数字，一定不是正确的身份证号，你这样写不对，很早以前就听说身份证号正则只能判断格式是否正确，而对于身份证号正确性需要用算法计算出来。
+>Recent projects used to judge the legality of the id card original thinking of regular online a lot of, just copy and paste the one, who wanted to meet a id number with X-ray test, the test says change X to Numbers, is not the correct id number, you write wrong, id long ago heard that regular can only judge the format is correct, and calculated to id for the correctness of algorithm.
 ## Requirements
 
 - iOS 8.0+ 
@@ -13,54 +13,55 @@
 ## GitHub
 ### [OCDemo](https://github.com/KingComeFromChina/CheckUserIDNumberValidDemoOC)
 ### [SwiftDemo](https://github.com/KingComeFromChina/CheckUserIDNumberValidDemoSwift)
-看看下面的身份证常识，再看代码的话，你的逻辑一下就明了了。
-#### 身份证常识
-我国的身份证号分为15位和18位两种。身份证是国民的身份编号，编号是有一定规律的。
-居民身份证号码，根据〖中华人民共和国国家标准 GB 11643-1999〗中有关公民身份号码的规定，公民身份号码是特征组合码，由十七位数字本体码和一位数字校验码组成。排列顺序从左至右依次为：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位数字校验码。 居民身份证是国家法定的证明公民个人身份的有效证件。
-#### 结构和形式
-1. 号码的结构
+Look at the following id common sense, then look at the code, your logic is clear.
+#### Identification of common sense
+Our country's id number is divided into 15 and 18.Id is a national identity number, the number is not random.
+Resident identity card number, according to the showing of the People's Republic of China national standard GB 11643-11643] in the regulations on citizen id Numbers, citizenship combined code number is characteristics, by 17 digit code of ontology and a number of check code.The order from left to right in turn for: six figures address code, eight digit birth date code, the three digital sequence code and a digital check code.Resident identity card is the national legal proof of valid certificates of the identity of the individual citizens.
 
->公民身份号码是特征组合码，由十七位数字本体码和一位校验码组成。排列顺序从左至右依次为：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位数字校验码。
+#### Structure and form
 
-2．地址码
+1. The structure of the number
 
->表示编码对象常住户口所在县（市、旗、区）的行政区划代码，按GB/T2260的规定执行。
+>Citizen identity number is characteristics of combination code, the seventeen of digital ontology yards and a check code.The order from left to right in turn for: six figures address code, eight digit birth date code, the three digital sequence code and a digital check code.
+
+2．Address code
+
+>Encoding the object the permanent residence county (city, flag, area) of administrative division code, shall be governed by the provisions of the GB/T2260.
 　
   
-3．出生日期码
+3．Birth date code
 　  
 　  
->表示编码对象出生的年、月、日，按GB/T7408的规定执行，年、月、日代码之间不用分隔符。
+>said coding object birth year, month, day, according to the provisions of the GB/T7408, year, month, day without separators between code.
 
 　  
-4．顺序码
+4．The order code
 　  
->表示在同一地址码所标识的区域范围内，对同年、同月、同日出生的人编定的顺序号，顺序码的奇数分配给男性，偶数分配给女性。
-　  
+> said at the same address code identified areas within the scope of the people born in the same year, in the same month, on the same day of serial number, sequence code odd number assigned to the male, the even assigned to women.　  
 
-5．校验码
+5．Check code
 　  
->根据前面十七位数字码，按照ISO7064:1983.MOD11-2校验码计算出来的检验码。
+> according to the previous 17 digit word, according to ISO7064:1983 MOD11-2 check code calculated check code.
 
-6. 地址码
+6. Address code
 
 
   ```
-  华北地区： 北京市|110000，天津市|120000，河北省|130000，山西省|140000，内蒙古自治区|150000，
+  In north China： The Beijing municipal|110000，tianjin|120000，In hebei province|130000，Shanxi Province|140000，The Inner Mongolia autonomous region|150000，
 
-  东北地区： 辽宁省|210000，吉林省|220000，黑龙江省|230000，
+  In the northeast： Liaoning province|210000，Jilin province|220000，Heilongjiang province|230000，
 
-  华东地区： 上海市|310000，江苏省|320000，浙江省|330000，安徽省|340000，福建省|350000，江西省|360000，山东省|370000，
+  East China area： Shanghai|310000，Jiangsu province|320000，Zhejiang province|330000，In anhui province|340000，Fujian province|350000，Jiangxi province|360000，In shandong province|370000，
 
-  华中地区： 河南省|410000，湖北省|420000，湖南省|430000
+  In central China： Henan province|410000，Hubei province|420000，Hunan province|430000
 
-  华南地区： 广东省|440000，广西壮族自治区|450000，海南省|460000，
+  In south China： Guangdong province|440000，The guangxi zhuang autonomous region|450000，Hainan province|460000，
 
-  西南地区： 重庆市|500000，四川省|510000，贵州省|520000，云南省|530000，西藏自治区|540000，
+  In the southwest： chongqing|500000，Sichuan province|510000，The guizhou province|520000，In yunnan province|530000，The Tibet autonomous region|540000，
 
-  西北地区： 陕西省|610000，甘肃省|620000，青海省|630000，宁夏回族自治区|640000，新疆维吾尔自治区|650000，
+  The northwest region： Shanxi province|610000，Gansu province|620000，Qinghai province|630000，The ningxia hui autonomous region|640000，The xinjiang uygur autonomous region|650000，
  
-  特别地区：台湾地区(886)|710000，香港特别行政区（852)|810000，澳门特别行政区（853)|820000
+  Special area：台湾地区(886)|710000，香港特别行政区（852)|810000，澳门特别行政区（853)|820000
    ```
 #### 中国大陆居民身份证号码中的地址码的数字编码规则为：
 　
