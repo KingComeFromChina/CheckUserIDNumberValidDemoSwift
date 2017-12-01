@@ -405,7 +405,7 @@ func isTrueIDNumber(text:String) -> Bool{
 # 推荐文章
 ## [iPhone X 适配（Swift篇）](http://www.jianshu.com/p/c01da05c5e40)
 ## [iOS身份证判断正则加算法](http://www.jianshu.com/p/33ed0d7cb413)
-##[RN环境搭建及与原生交互](http://www.jianshu.com/p/1537bb431d12)
+## [RN环境搭建及与原生交互](http://www.jianshu.com/p/1537bb431d12)
 ## [RxSwift使用手册](http://www.jianshu.com/p/d06b87e368fd)
 ## [RxSwift日常项目使用（持续更新。。。）](http://www.jianshu.com/p/63a03788f4cf)
 ## [比较RAC和RxSwift](http://www.jianshu.com/p/c38f027f55e9)
@@ -413,5 +413,5 @@ func isTrueIDNumber(text:String) -> Bool{
 ## [伪文艺的程序员](http://www.jianshu.com/u/6ae311ad394d)
 ## 总结
 
->如果你感觉有用的话，拿走，点个喜欢就OK
+>If you feel useful, and some like is OK
 
