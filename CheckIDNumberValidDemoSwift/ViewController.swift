@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let title = "411002201612220153"
+        let title = ""
         
         if !isTrueIDNumber(text: title) {
             print("不是")
