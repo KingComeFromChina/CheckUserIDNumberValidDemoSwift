@@ -61,49 +61,51 @@ Resident identity card number, according to the showing of the People's Republic
 
   The northwest region： Shanxi province|610000，Gansu province|620000，Qinghai province|630000，The ningxia hui autonomous region|640000，The xinjiang uygur autonomous region|650000，
  
-  Special area：台湾地区(886)|710000，香港特别行政区（852)|810000，澳门特别行政区（853)|820000
+  Special area：The Taiwan region(886)|710000，The Hong Kong special administrative region（852)|810000，The Macao special administrative region（853)|820000
    ```
-#### 中国大陆居民身份证号码中的地址码的数字编码规则为：
+#### The Chinese mainland residents, digital coding rules for id number in the address：
 　
  ```
  
-   第一、二位表示省（自治区、直辖市、特别行政区）。
-　  　 
-　 第三、四位表示市（地级市、自治州、盟及国家直辖市所属市辖区和县的汇总码）。其中，01-20，51-70表示省直辖市；21-50表示地区（自治州、盟）。
-　  　 
-　 第五、六位表示县（市辖区、县级市、旗）。01-18表示市辖区或地区（自治州、盟）辖县级市；21-80表示县（旗）；81-99表示省直辖县级市。
-  
+Said the first, two provinces (autonomous regions and municipalities directly under the central government, special administrative region).　 
+
+The third and fourth said city (prefecture, autonomous prefectures and African union (au) and the national municipality directly under the central government's municipal districts and counties of summary code).Among them, 01-20: pp.49-60 70 provinces municipalities directly under the central government;21 to 50 said region (autonomous prefectures and au).
+
+Fifth, said the county (municipal, county-level city, flag).01-18 municipal district or region (autonomous prefectures and au) governs county;21-80 counties (banners);81-99 indicates directly under province county.
+
  ```
 
 
-7. 生日期码
->身份证号码第七位到第十四位）表示编码对象出生的年、月、日，其中年份用四位数字表示，年、月、日之间不用分隔符。例如：1981年05月11日就用19810511表示。
-　  　 
-　  　 
-
-8. 顺序码
->身份证号码第十五位到十七位）地址码所标识的区域范围内，对同年、月、日出生的人员编定的顺序号。其中第十七位奇数分给男性，偶数分给女性
-　  　 
+7. Birthday period code
+> id number 7 to 14 encoding the object birth year, month, day, one year with four digits, said no separators between year, month, day.For example, May 11, 1981 in 19810511.　  　 
 　  　 
 
-9. 校验码
+8. The order code
+> id number to fifteenth to address identified areas within the scope of seventeen, born of the same year, month, the staff of serial number.17 odd among men, even among women　  　 
+　  　 
+
+9. Check code
 　
->作为尾号的校验码，是由号码编制单位按统一的公式计算出来的，如果某人的尾号是0-9，都不会出现X，但如果尾号是10，那么就得用X来代替，因为如果用10做尾号，那么此人的身份证就变成了19位，而19位的号码违反了国家标准，并且中国的计算机应用系统也不承认19位的身份证号码。Ⅹ是罗马数字的10，用X来代替10，可以保证公民的身份证符合国家标准。
-　  　 
+> as a private check code, it is calculated by number unit according to the unified formula, if someone's tail number is 0-9, X will not appear, but if the tail is 10, then to use X to replace, because if made tail number 10, then this person id card becomes a 19, and violated the national standard, the number 19 and China's computer application system does not recognize identification number 19.Ⅹ is Roman numeral 10, with 10 X instead of, can guarantee citizen id card is in line with national standards.　  　 
 
 
-10. 身份证校验码的计算方法
-```
-1、将前面的身份证号码17位数分别乘以不同的系数。从第一位到第十七位的系数分别为：7－9－10－5－8－4－2－1－6－3－7－9－10－5－8－4－2。
-2、将这17位数字和系数相乘的结果相加。
-3、用加出来和除以11，看余数是多少？
-4、余数只可能有0－1－2－3－4－5－6－7－8－9－10这11个数字。其分别对应的最后一位身份证的号码为1－0－X－9－8－7－6－5－4－3－2。(即余数0对应1，余数1对应0，余数2对应X...)
-5、通过上面得知如果余数是3，就会在身份证的第18位数字上出现的是9。如果对应的数字是2，身份证的最后一位号码就是罗马数字x。
+10. The calculation method of id check code
 
 ```
+1、 will be in front of the id card number 17 digit number multiplied by the coefficient of different respectively.From the first to 17 coefficient respectively: 7-9-10-5-8-4-5-8-4-3-7-9-7-9-10-4-2.
 
-## 下面直接粘贴代码
-## OC版本的
+2、 the coefficient of 17 Numbers and the result of the multiplication addition.
+
+3、 in and out, and divided by 11, the remainder is how much?
+
+4、 the remainder may have only 0-1-2-3-1-2-3 - the 7-8-9-10 this 11 Numbers.Its respectively corresponding to the last id number is 1-0 - X - 9-8-7-9-8-7-3-2.(that is, the remainder 0 corresponds to 1, the remainder corresponding to 0, 1 remainder 2 corresponding X...)
+
+5、Through that if the remainder is above 3, in the id card on the 18th of digital is 9.If the corresponding number is 2, the last of the id card number is the Roman numerals x.
+
+```
+
+## Directly paste the code below
+## OC version 
 　  　
 　 
 ```
@@ -220,7 +222,7 @@ Resident identity card number, according to the showing of the People's Republic
 　  　 }
 ```
 　  　 
-## Swift版本的
+## Swift version 
 
 　  　
 　  　 
@@ -403,16 +405,17 @@ func isTrueIDNumber(text:String) -> Bool{
 　  　 }
 ```
 
-# 推荐文章
+# Recommend the article
 ## [iPhone X 适配（Swift篇）](http://www.jianshu.com/p/c01da05c5e40)
 ## [iOS身份证判断正则加算法](http://www.jianshu.com/p/33ed0d7cb413)
 ## [RN环境搭建及与原生交互](http://www.jianshu.com/p/1537bb431d12)
 ## [RxSwift使用手册](http://www.jianshu.com/p/d06b87e368fd)
 ## [RxSwift日常项目使用（持续更新。。。）](http://www.jianshu.com/p/63a03788f4cf)
 ## [比较RAC和RxSwift](http://www.jianshu.com/p/c38f027f55e9)
-# 作者
+# The author
 ## [伪文艺的程序员](http://www.jianshu.com/u/6ae311ad394d)
-## 总结
+
+# Conclusion
 
 >If you feel useful, and some like is OK
 
